@@ -1,9 +1,6 @@
 import React, { useMemo, useState } from "react"
-import CalendarGraph, {
-  dayFormat,
-  getDateByDays,
-  getRandomRecords,
-} from "@lib/core"
+import CalendarGraph from "@lib/core"
+import { dayFormat, getDateByDays, getRandomRecords } from "@lib/core/utils"
 
 export default () => {
   const thisYear = new Date().getFullYear()
