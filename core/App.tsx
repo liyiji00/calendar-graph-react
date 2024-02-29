@@ -1,109 +1,91 @@
-import dayjs from "dayjs";
-import React, { useEffect, useMemo, useState } from "react";
+import dayjs from "dayjs"
+import React, { useEffect, useMemo, useState } from "react"
 
 import {
   getDateByDays,
-  dF,
+  dayFormat,
   getMouthFirstDay,
   getMouthColspan,
   showWeek,
-} from "../utils/day";
-import { classNames } from "../utils/tools";
+} from "./utils/day"
+import { classNames } from "./utils/tools"
+import defaultConfig from "./defaultConfig.json"
+import { TypeColorKey, TypeLevels, TypeProps, TypeRecord } from "./types"
 
-import defaultConfig from "./defaultConfig.json";
-import "./index.scss";
-
-type TypeColorKey = 0 | 1 | 2 | 3 | 4;
-type TypeLevels = 0 | 1 | 2 | 3;
-type TypeRecord = {
-  /** The nth day of the year */
-  days: number;
-  /** Count of the day */
-  count: number;
-};
-type TypeProps = {
-  year: number;
-  isDark?: boolean;
-  colors?: { [key in TypeColorKey]: string };
-  levels?: { [key in TypeLevels]: number };
-  /** Sort by days, need consecutive */
-  records?: number[];
-  /** The function runs when you click the `<rd/>` element */
-  recordHandle?: (record: TypeRecord) => any;
-  /** When you hove `<rd/>` element, the result of running the function is displayed */
-  renderTootip?: (record: TypeRecord) => string;
-};
+import "./app.scss"
 
 export default function CalendarGraph(props: TypeProps) {
+  const { recordHandle, renderTootip } = props
+
   function getLevel(count: number): TypeLevels {
-    const levels = props.levels || defaultConfig.levels;
-    if (count > levels[3]) return 3;
-    if (count > levels[2]) return 2;
-    if (count > levels[1]) return 1;
-    return 0;
+    const levels = props.levels || defaultConfig.levels
+    if (count > levels[3]) return 3
+    if (count > levels[2]) return 2
+    if (count > levels[1]) return 1
+    return 0
   }
   function getFillColor(count: number) {
     return props.colors
       ? props.colors[getLevel(count)]
-      : defaultConfig.colors[getLevel(count)][props.isDark ? "dark" : "light"];
+      : defaultConfig.colors[getLevel(count)][props.isDark ? "dark" : "light"]
   }
   function getPaletteColors() {
-    const keys: TypeColorKey[] = [0, 1, 2, 3, 4];
+    const keys: TypeColorKey[] = [0, 1, 2, 3, 4]
     return props.colors
-      ? keys.map((key) => props.colors![key])
+      ? keys.map(key => props.colors![key])
       : keys.map(
-          (key) => defaultConfig.colors[key][props.isDark ? "dark" : "light"]
-        );
+          key => defaultConfig.colors[key][props.isDark ? "dark" : "light"]
+        )
   }
   function getMap(year: number) {
-    const map = [] as TypeRecord[];
-    const day = getMouthFirstDay(year, 0);
+    const map = [] as TypeRecord[]
+    const day = getMouthFirstDay(year, 0)
 
     map.push(
       ...new Array(day)
         .fill(null)
         .map((_, idx) => ({ count: 0, days: idx - day }))
-    );
+    )
 
-    const days = dayjs().year(year).endOf("y").dayOfYear();
+    const days = dayjs().year(year).endOf("y").dayOfYear()
     for (let i = 0; i < days; i++)
       map.push({
         days: i + 1,
         count: props.records?.[i] || 0,
-      });
-    return map;
+      })
+    return map
   }
   function getTootipText(record: TypeRecord) {
-    return props.renderTootip
-      ? props.renderTootip(record)
+    return renderTootip
+      ? renderTootip(record)
       : (record.count || "No") +
           " contributions on " +
-          dF(getDateByDays(props.year, record.days));
+          dayFormat(getDateByDays(props.year, record.days))
   }
 
   const [dataMap, setDataMap] = useState<{
-    year: number;
-    map: TypeRecord[];
+    year: number
+    map: TypeRecord[]
   }>({
     year: props.year,
     map: getMap(props.year),
-  });
+  })
   useEffect(() => {
     if (props.year !== dataMap.year) {
       setDataMap({
         year: props.year,
         map: getMap(props.year),
-      });
+      })
     }
-  }, [props]);
+  }, [props])
 
   const sortByWeek = useMemo(() => {
-    const data = new Array(7).fill(null).map((_) => [] as TypeRecord[]);
+    const data = new Array(7).fill(null).map(_ => [] as TypeRecord[])
     dataMap.map.forEach((i, idx) => {
-      data[idx % 7].push(i);
-    });
-    return data;
-  }, [dataMap.map]);
+      data[idx % 7].push(i)
+    })
+    return data
+  }, [dataMap.map])
 
   return (
     <div
@@ -138,8 +120,8 @@ export default function CalendarGraph(props: TypeProps) {
                     attr-tip={getTootipText(record)}
                     style={{ backgroundColor: getFillColor(record.count) }}
                     onClick={() => {
-                      if (props.recordHandle) {
-                        props.recordHandle(record);
+                      if (recordHandle) {
+                        recordHandle(record)
                       }
                     }}
                   />
@@ -158,7 +140,7 @@ export default function CalendarGraph(props: TypeProps) {
         <div className="palette">
           <span>Less</span>
           <div className="svgs">
-            {getPaletteColors().map((color) => (
+            {getPaletteColors().map(color => (
               <svg
                 width={10}
                 height={10}
@@ -176,5 +158,5 @@ export default function CalendarGraph(props: TypeProps) {
         </div>
       </div>
     </div>
-  );
+  )
 }

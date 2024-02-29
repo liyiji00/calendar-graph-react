@@ -1,2 +1,2 @@
-export * from "./day";
-export * from "./tools";
+export * from "./day"
+export * from "./tools"

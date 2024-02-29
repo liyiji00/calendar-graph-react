@@ -3,8 +3,5 @@
   "version": "1.0.0",
   "main": "./index.ts",
   "module": "./index.ts",
-  "type": "module",
-  "scripts": {
-    "build": "tsc"
-  }
+  "type": "module"
 }
