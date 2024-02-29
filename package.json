@@ -8,8 +8,7 @@
   "license": "MIT",
   "readme": "README.md",
   "repository": {
-    "type": "git",
-    "url": "https://github.com/llx-00/react-calendar-graph.git"
+    "url": "git+https://github.com/liyiji00/calendar-graph-react.git"
   },
   "main": "./dist/bundle.js",
   "module": "./dist/bundle.js",
