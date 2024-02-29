@@ -1,4 +1,4 @@
-# React Calendar Graph
+# Calendar Graph React
 
 <!-- todo: codesandbox url -->
 
@@ -8,7 +8,9 @@ A calendar graph react-component inspired by github's contribution graph. [**Try
 
 <!-- todo: npmjs url -->
 
-[See vue version]()
+## Vue version
+
+[Github](https://github.com/liyiji00/calendar-graph-vue), [Npm]()
 
 ## Setup
 
@@ -22,11 +24,22 @@ npm install @liyiji00/calendar-graph-react
 
 Import the component & styles:
 
-```ts
+```tsx
 import CalendarGraph from "@liyiji00/calendar-graph-react"
-// or
-// import CalendarGraph from "@liyiji00/calendar-graph-vue"
+import { getRandomRecords } from "@liyiji00/calendar-graph-react/utils"
 import "@liyiji00/calendar-graph-react/dist/style.css"
+
+function App() {
+  const thisYear = new Date().getFullYear()
+  const records = getRandomRecords(thisYear)
+
+  return (
+    <CalendarGraph
+      year={thisYear}
+      records={records}
+    />
+  )
+}
 ```
 
 ## Props
