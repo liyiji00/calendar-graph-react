@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": false,
   "type": "module",
-  "packageManager": "pnpm@8.15.1",
+  "packageManager": "^pnpm@8.15.1",
   "description": "A calendar graph react-component inspired by github's contribution graph",
   "author": "Yiji Li",
   "license": "MIT",
