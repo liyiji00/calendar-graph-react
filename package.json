@@ -1,6 +1,6 @@
 {
   "name": "@liyiji00/calendar-graph-react",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": false,
   "type": "module",
   "packageManager": "^pnpm@8.15.1",
@@ -11,8 +11,8 @@
   "repository": {
     "url": "git+https://github.com/liyiji00/calendar-graph-react.git"
   },
-  "main": "./dist/bundle.js",
-  "module": "./dist/bundle.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
@@ -26,7 +26,8 @@
   "scripts": {
     "dev": "npm -C example run dev",
     "build": "tsc && vite build",
-    "preview": "npm -C example run preview"
+    "preview": "npm -C example run preview",
+    "move-dist": ""
   },
   "dependencies": {
     "dayjs": "^1.11.10",
