@@ -1,16 +1,12 @@
 # Calendar Graph React
 
-<!-- todo: codesandbox url -->
-
-A calendar graph react-component inspired by github's contribution graph. [**Try it out on CodeSandbox**]().
+A calendar graph react-component inspired by github's contribution graph. [**Try it out on CodeSandbox**](https://codesandbox.io/p/devbox/demo-calendar-graph-react-gx3gkg).
 
 ![md-1](https://llx.cool/calendar-graph/md-1.png)
 
-<!-- todo: npmjs url -->
-
 ## Vue version
 
-[Github](https://github.com/liyiji00/calendar-graph-vue), [Npm]()
+[Github](https://github.com/liyiji00/calendar-graph-vue)
 
 ## Setup
 
@@ -26,7 +22,7 @@ Import the component & styles:
 
 ```tsx
 import CalendarGraph from "@liyiji00/calendar-graph-react"
-import { getRandomRecords } from "@liyiji00/calendar-graph-react/utils"
+import { getRandomRecords } from "@liyiji00/calendar-graph-react/dist/utils"
 import "@liyiji00/calendar-graph-react/dist/style.css"
 
 function App() {
