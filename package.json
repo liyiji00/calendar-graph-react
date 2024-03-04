@@ -1,6 +1,6 @@
 {
   "name": "@liyiji00/calendar-graph-react",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": false,
   "type": "module",
   "packageManager": "^pnpm@8.15.1",
