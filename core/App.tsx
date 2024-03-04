@@ -12,8 +12,6 @@ import { classNames } from "./utils/tools"
 import defaultConfig from "./defaultConfig.json"
 import { TypeColorKey, TypeLevels, TypeProps, TypeRecord } from "./types"
 
-import "./app.scss"
-
 export default function CalendarGraph(props: TypeProps) {
   const { recordHandle, renderTootip } = props
 

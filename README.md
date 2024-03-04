@@ -18,12 +18,11 @@ npm install @liyiji00/calendar-graph-react
 
 ## Usage
 
-Import the component & styles:
+Import the component:
 
 ```tsx
 import CalendarGraph from "@liyiji00/calendar-graph-react"
 import { getRandomRecords } from "@liyiji00/calendar-graph-react/dist/utils"
-import "@liyiji00/calendar-graph-react/dist/style.css"
 
 function App() {
   const thisYear = new Date().getFullYear()
